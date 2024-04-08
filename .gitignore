@@ -1,0 +1,39 @@
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos de configuración creados por Visual Studio
+.vs/
+
+# Archivos de usuario de Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Carpeta de caché de NuGet
+packages/
+
+# Archivos generados por el IDE Rider
+.idea/
+
+# Archivos temporales
+[Tt]emp/
+[Tt]est[Rr]esults/
+
+# Carpeta de compilación
+[Bb]uild/
+
+# Archivos de respaldo y temporales
+*.[Bb]ak
+*.[Cc]ache
+*.[Pp]ublish.xml
+*.log
+*.DS_Store
+
+# Especificaciones adicionales para C#
+# Archivos de compilación de Roslyn
+*.cache
+*.csproj.user
+*.ruleset
+*.DotSettings
