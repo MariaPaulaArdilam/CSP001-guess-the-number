@@ -10,7 +10,7 @@ namespace GuessTheNumber
     abstract internal class Player
     {
         public String Name { set; get; }
-
+        
         public ArrayList guesses = new ArrayList();
 
         public abstract int makeGuess();
