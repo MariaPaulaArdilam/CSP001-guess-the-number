@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,23 +9,39 @@ namespace GuessTheNumber
 {
     internal class Game
     {
-
-       
-        public int RandomNumber { get; set;}
-        public void GenerarNumberRandom()
+        public Game()
         {
-          Random ramdom =  new Random();
-           RandomNumber = ramdom.Next(1, 100);
+            GenerarNumberRandom();
+            Console.WriteLine(RandomNumber);
+            HumanPlayer player = new HumanPlayer();
+            player.captureName();
+            player.question();
+            int number = player.makeGuess();
+            RangeDifference(number);
+
+            CompuPlayer compu = new CompuPlayer();
+            int numberCompu = compu.makeGuess();
+            RangeDifference(numberCompu);
+
+            CheckGuess(number, player);
 
         }
 
-        public void RangeDifference( int number )
+        private int RandomNumber { get; set; }
+        public void GenerarNumberRandom()
         {
-          ;
-            int difference = Math.Abs( RandomNumber - number );
+            Random ramdom = new Random();
+            RandomNumber = ramdom.Next(1, 100);
+
+        }
+
+        public void RangeDifference(int number)
+        {
+            ;
+            int difference = Math.Abs(RandomNumber - number);
             if (difference == 0)
             {
-                Console.WriteLine("¡Felicidades! Has adivinado el número.");
+                Console.WriteLine("Has adivinado el número.");
             }
             else if (difference <= 5)
             {
@@ -40,9 +57,25 @@ namespace GuessTheNumber
             }
         }
 
+        public bool CheckGuess(int number, Player player)
+        {
+            if (number == RandomNumber)
+            {
 
+                Console.WriteLine($"Felicitaciones {player.Name} adivinaste el numero");
+                string intentos = string.Join(", ", player.guesses.Cast<int>());
+                Console.WriteLine($"Intentos: {intentos}");
+                Console.WriteLine($"Numero de intentos {player.guesses.Count}");
 
-
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+          
+        }
 
     }
 }
+
