@@ -23,8 +23,8 @@ namespace GuessTheNumber
             int numberCompu = compu.makeGuess();
             RangeDifference(numberCompu);
 
-            CheckGuess(number, player);
-
+            TurnGame(number, player);
+            
         }
 
         private int RandomNumber { get; set; }
@@ -57,8 +57,9 @@ namespace GuessTheNumber
             }
         }
 
-        public bool CheckGuess(int number, Player player)
+        /*public bool CheckGuess(int number, Player player)
         {
+
             if (number == RandomNumber)
             {
 
@@ -73,9 +74,57 @@ namespace GuessTheNumber
             {
                 return false;
             }
+
+         
           
         }
 
+        public bool TurnGamme(int number)
+        {
+            while (number != RandomNumber)
+            {
+
+                
+                if (number == RandomNumber)
+                {
+                    return true; 
+                }
+            }
+            return false;  
+
+        }*/
+
+
+        public bool TurnGame(int number, Player player)
+        {
+
+            while (number != RandomNumber)
+            {
+
+                number = player.makeGuess();
+
+
+                if (number == RandomNumber)
+                {
+                    Console.WriteLine($"Felicitaciones {player.Name} adivinaste el numero");
+                    string intentos = string.Join(", ", player.guesses.Cast<int>());
+                    Console.WriteLine($"Intentos: {intentos}");
+                    Console.WriteLine($"Numero de intentos {player.guesses.Count}");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("El número no es correcto. Intenta de nuevo.");
+                }
+            }
+            return false;
+        }
+
+
+
     }
+
+        
+   
 }
 
