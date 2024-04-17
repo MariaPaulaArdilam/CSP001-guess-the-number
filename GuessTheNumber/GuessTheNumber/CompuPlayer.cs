@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuessTheNumber
 {
-    internal class CompuPlayer : Player
+    public class CompuPlayer : Player
     {
 
 

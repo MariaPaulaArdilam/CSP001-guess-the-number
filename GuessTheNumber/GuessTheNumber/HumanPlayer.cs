@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuessTheNumber
 {
-    internal class HumanPlayer : Player
+    public class HumanPlayer : Player
     {
 
         public void captureName()
@@ -18,7 +18,7 @@ namespace GuessTheNumber
             this.Name = playerName;
 
         } 
-
+        
         public void question()
         {
             Console.WriteLine("¿Estás lista para jugar? (si/no)");

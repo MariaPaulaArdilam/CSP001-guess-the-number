@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GuessTheNumber
 {
-    internal class Game
+    public class Game
     {
         public Game()
         {
@@ -27,7 +27,7 @@ namespace GuessTheNumber
             
         }
 
-        private int RandomNumber { get; set; }
+        public int RandomNumber { get; set; }
         public void GenerarNumberRandom()
         {
             Random ramdom = new Random();
@@ -57,43 +57,6 @@ namespace GuessTheNumber
             }
         }
 
-        /*public bool CheckGuess(int number, Player player)
-        {
-
-            if (number == RandomNumber)
-            {
-
-                Console.WriteLine($"Felicitaciones {player.Name} adivinaste el numero");
-                string intentos = string.Join(", ", player.guesses.Cast<int>());
-                Console.WriteLine($"Intentos: {intentos}");
-                Console.WriteLine($"Numero de intentos {player.guesses.Count}");
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-         
-          
-        }
-
-        public bool TurnGamme(int number)
-        {
-            while (number != RandomNumber)
-            {
-
-                
-                if (number == RandomNumber)
-                {
-                    return true; 
-                }
-            }
-            return false;  
-
-        }*/
-
 
         public bool TurnGame(int number, Player player)
         {
@@ -112,14 +75,12 @@ namespace GuessTheNumber
                     Console.WriteLine($"Numero de intentos {player.guesses.Count}");
                     return true;
                 }
-                else
-                {
-                    Console.WriteLine("El número no es correcto. Intenta de nuevo.");
-                }
             }
             return false;
         }
 
+
+        //nuevo metodo recibir un numero con rangedifference true si es o false si no r
 
 
     }
