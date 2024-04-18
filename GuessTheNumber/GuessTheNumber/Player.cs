@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GuessTheNumber
 {
-    abstract internal class Player
+    abstract public class Player
     {
         public String Name { set; get; }
         

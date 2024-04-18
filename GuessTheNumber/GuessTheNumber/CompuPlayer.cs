@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GuessTheNumber
 {
-    internal class CompuPlayer : Player
+    public class CompuPlayer : Player
     {
 
 
@@ -16,8 +17,9 @@ namespace GuessTheNumber
             int RandomNumber = ramdom.Next(1, 100);
             Console.WriteLine("Es el turno de la computadora");
             Console.WriteLine(RandomNumber);
+            this.guesses.Add(RandomNumber);
 
-          return RandomNumber;
+            return RandomNumber;
         }
     }
 }

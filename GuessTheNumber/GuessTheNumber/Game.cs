@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GuessTheNumber
 {
-    internal class Game
+    public class Game
     {
         public Game()
         {
@@ -16,18 +17,13 @@ namespace GuessTheNumber
             HumanPlayer player = new HumanPlayer();
             player.captureName();
             player.question();
-            int number = player.makeGuess();
-            RangeDifference(number);
-
             CompuPlayer compu = new CompuPlayer();
-            int numberCompu = compu.makeGuess();
-            RangeDifference(numberCompu);
-
-            TurnGame(number, player);
+            compu.Name = "Computadora";
+            TurnGame( player, compu);
             
         }
 
-        private int RandomNumber { get; set; }
+        public int RandomNumber { get; set; }
         public void GenerarNumberRandom()
         {
             Random ramdom = new Random();
@@ -35,96 +31,76 @@ namespace GuessTheNumber
 
         }
 
-        public void RangeDifference(int number)
+        public string RangeDifference(int number)
         {
-            ;
+
             int difference = Math.Abs(RandomNumber - number);
             if (difference == 0)
             {
-                Console.WriteLine("Has adivinado el número.");
+                return "Has adivinado el número.";
             }
             else if (difference <= 5)
             {
-                Console.WriteLine("Estás muy cerca.");
+                return "Estás muy cerca.";
             }
             else if (difference <= 10)
             {
-                Console.WriteLine("Estás cerca.");
+                return "Estás cerca.";
             }
             else
             {
-                Console.WriteLine("Estás lejos.");
+                return "Estás lejos.";
             }
+
+
+
+
         }
 
-        /*public bool CheckGuess(int number, Player player)
+
+        public void TurnGame(HumanPlayer player, CompuPlayer compu)
         {
+            var turne = 1;
+            var number = 0;
 
-            if (number == RandomNumber)
+            while (number != RandomNumber)
             {
-
+                if (turne % 2 == 0)
+                {
+                    number = compu.makeGuess();
+                    RangeDifference(number);
+                    turne++;
+                } 
+                else
+                {
+                    number = player.makeGuess();
+                    RangeDifference(number);
+                    turne++;
+                }
+            }
+            
+            if (turne % 2 == 0)
+            {
                 Console.WriteLine($"Felicitaciones {player.Name} adivinaste el numero");
                 string intentos = string.Join(", ", player.guesses.Cast<int>());
                 Console.WriteLine($"Intentos: {intentos}");
                 Console.WriteLine($"Numero de intentos {player.guesses.Count}");
-
-                return true;
+               
             }
             else
             {
-                return false;
+                Console.WriteLine($"Felicitaciones {compu.Name} adivinaste el numero");
+                string intentos = string.Join(", ", compu.guesses.Cast<int>());
+                Console.WriteLine($"Intentos: {intentos}");
+                Console.WriteLine($"Numero de intentos {compu.guesses.Count}");
+               
             }
+        }  
 
-         
-          
         }
-
-        public bool TurnGamme(int number)
-        {
-            while (number != RandomNumber)
-            {
-
-                
-                if (number == RandomNumber)
-                {
-                    return true; 
-                }
-            }
-            return false;  
-
-        }*/
-
-
-        public bool TurnGame(int number, Player player)
-        {
-
-            while (number != RandomNumber)
-            {
-
-                number = player.makeGuess();
-
-
-                if (number == RandomNumber)
-                {
-                    Console.WriteLine($"Felicitaciones {player.Name} adivinaste el numero");
-                    string intentos = string.Join(", ", player.guesses.Cast<int>());
-                    Console.WriteLine($"Intentos: {intentos}");
-                    Console.WriteLine($"Numero de intentos {player.guesses.Count}");
-                    return true;
-                }
-                else
-                {
-                    Console.WriteLine("El número no es correcto. Intenta de nuevo.");
-                }
-            }
-            return false;
-        }
-
 
 
     }
 
-        
-   
-}
+  
 
