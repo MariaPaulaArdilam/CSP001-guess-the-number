@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace GuessTheNumber.Test
 {
     [TestClass]
@@ -25,31 +27,20 @@ namespace GuessTheNumber.Test
         [TestMethod]
         public void TestRangeDiference()
         {
-             int RamdonNumber = 5;
-             var input = new StringReader("42");  // Simula que el usuario introduce "42" y luego "respuesta a question"
-             var output = new StringWriter();
-             Console.SetIn(input);
-             Console.SetOut(output);
+            int RamdonNumber = 5;
+            var input = new StringReader("maria\nsi\n45");
+            var output = new StringWriter();
+            Console.SetIn(input);
+            Console.SetOut(output);
 
-             var game = new Game();
+            var game = new Game();
 
-             // Captura la salida de la consola justo después de llamar a RangeDifference
-             string consoleOutput = output.ToString().Split('\n').Last().Trim();
-
-             Assert.AreEqual("Has adivinado el número.", consoleOutput);
-
-
-            /* Arrange
-            Game game = new Game();
-            game.RandomNumber = 10; // Mocking the RandomNumber property
-            int number = 10;
-            string expectedMessage = "Has adivinado el número.";
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
             // Act
-            game.RangeDifference(number);
+            string prueba = game.RangeDifference(RamdonNumber);
+
             // Assert
-            Assert.AreEqual(expectedMessage, consoleOutput.ToString().Trim());*/
+            Assert.AreEqual("Estás lejos.", prueba);
+
         }
 
 

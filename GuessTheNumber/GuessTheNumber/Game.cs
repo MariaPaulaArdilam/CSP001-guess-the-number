@@ -31,30 +31,30 @@ namespace GuessTheNumber
 
         }
 
-        public bool RangeDifference(int number)
+        public string RangeDifference(int number)
         {
-            
+
             int difference = Math.Abs(RandomNumber - number);
             if (difference == 0)
             {
-                Console.WriteLine("Has adivinado el número.");
+                return "Has adivinado el número.";
             }
             else if (difference <= 5)
             {
-                Console.WriteLine("Estás muy cerca.");
+                return "Estás muy cerca.";
             }
             else if (difference <= 10)
             {
-                Console.WriteLine("Estás cerca.");
+                return "Estás cerca.";
             }
             else
             {
-                Console.WriteLine("Estás lejos.");
+                return "Estás lejos.";
             }
 
-            return true;
 
-         
+
+
         }
 
 
@@ -81,10 +81,10 @@ namespace GuessTheNumber
             
             if (turne % 2 == 0)
             {
-                Console.WriteLine($"Felicitaciones {compu.Name} adivinaste el numero");
-                string intentos = string.Join(", ", compu.guesses.Cast<int>());
+                Console.WriteLine($"Felicitaciones {player.Name} adivinaste el numero");
+                string intentos = string.Join(", ", player.guesses.Cast<int>());
                 Console.WriteLine($"Intentos: {intentos}");
-                Console.WriteLine($"Numero de intentos {compu.guesses.Count}");
+                Console.WriteLine($"Numero de intentos {player.guesses.Count}");
                
             }
             else
@@ -98,11 +98,6 @@ namespace GuessTheNumber
         }  
 
         }
-
-
-   /* Console.WriteLine($"Turnos de {((HumanPlayer)player).Name}: {((HumanPlayer)player).ListGuess.Count}");
-                Console.WriteLine($"Nros Intentados por {((HumanPlayer)player).Name}: ");
-                Console.WriteLine(string.Join(", ", ((HumanPlayer) player).ListGuess));*/
 
 
     }
